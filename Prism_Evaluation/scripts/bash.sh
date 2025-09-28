@@ -62,8 +62,7 @@ echo "current bench: $DATA"
 echo "current tag: $TAG"
 echo "===================================="
 
-# --- 主逻辑 ---
-# 检查数据列表和标签列表的长度是否一致
+
 if [ ${#DATA_LIST[@]} -ne ${#TAG_LIST[@]} ]; then
     echo "error not identical"
     exit 1
