@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "CapRL"
+version = "0.1.0"
+description = "STIMULATING DENSE IMAGE CAPTION CAPABILITIES VIA REINFORCEMENT LEARNING"
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "torch==2.5.1",
+    "transformers==4.50.0",
+    "numpy==1.26.4",
+    "vllm==0.7.3",
+]
+
+
+[tool.setuptools.packages.find]
+exclude = ["eval*", "scripts*"]
