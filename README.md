@@ -20,7 +20,7 @@
 
   </p>
   📖<a href="">Paper</a> |🤗<a href="https://huggingface.co/internlm/CapRL-3B">CapRL-3B Model</a> |
-  🤗<a href="https://huggingface.co/datasets/internlm/CapRL-2M">CapRL-2M Dataset</a> |🤗<a href="https://huggingface.co/datasets/internlm/CapRL-2M">CapRL Collection</a> | 🤗<a href="">Daily Paper</a></h3>
+  🤗<a href="https://huggingface.co/datasets/internlm/CapRL-2M">CapRL-2M Dataset</a> |🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="">Daily Paper</a></h3>
 <div align="center"></div>
 <p align="center">
   <p>
