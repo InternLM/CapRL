@@ -84,49 +84,7 @@ vllm serve "/PATH/CapRL-3B" \
     --host 0.0.0.0
 ```
 
-Then you can use the chat API as below:
-
-
-```python
-from openai import OpenAI
-
-# Set OpenAI's API key and API base to use vLLM's API server.
-openai_api_key = "EMPTY"
-openai_api_base = "http://localhost:8000/v1"
-
-client = OpenAI(
-    api_key=openai_api_key,
-    base_url=openai_api_base,
-)
-
-chat_response = client.chat.completions.create(
-    model="caprl",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": "https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png"
-                    },
-                },
-                {"type": "text", "text": "What is the text in the illustrate?"},
-            ],
-        },
-    ],
-    temperature=1.0,
-    max_tokens=max_tokens,
-    top_p=1.0,
-    extra_body={
-        "repetition_penalty": 1.0,
-        },
-)
-print("Chat response:", chat_response)
-```
-
-You can also upload base64-encoded local images (see [OpenAI API protocol document](https://platform.openai.com/docs/guides/vision/uploading-base-64-encoded-images) for more details):
+Then you can use the chat API as below: (see [OpenAI API protocol document](https://platform.openai.com/docs/guides/vision/uploading-base-64-encoded-images) for more details):
 ```python
 import base64
 from openai import OpenAI
