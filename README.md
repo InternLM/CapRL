@@ -61,10 +61,11 @@ bash setup.sh
 ```
 
 ## ⭐️ Quick Start
+If you want to use **CapRL-3B** for captioning, you can directly follow the exact same inference approach as in [Qwen2.5-VL-series](https://github.com/QwenLM/Qwen3-VL/tree/d2240f11656bfe404b9ba56db4e51cd09f522ff1).
 
-如果你想要使用 **CapRL-3B**进行captioning, 可以直接使用[Qwen2.5-VL-series](https://github.com/QwenLM/Qwen3-VL/tree/d2240f11656bfe404b9ba56db4e51cd09f522ff1)完全相同的推理方式.
+We recommend using **vLLM** to speed up inference.
 
-我们推荐使用vllm加快推理速度
+
 
 ### Start an OpenAI API Service
 
@@ -77,6 +78,7 @@ vllm serve "/PATH/CapRL-3B" \
     --pipeline-parallel-size=1 \
     --gpu_memory_utilization=0.95 \
     --served-model-name=caprl \
+    --port 8000 \
     --host 0.0.0.0
 ```
 
