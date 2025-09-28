@@ -55,8 +55,8 @@ By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model
 ## 🛠️ Setup
 ```
 git clone https://github.com/InternLM/CapRL.git
-conda create -n ScaleCap python=3.10
-conda activate ScaleCap
+conda create -n CapRL python=3.10
+conda activate CapRL
 bash setup.sh
 ```
 
