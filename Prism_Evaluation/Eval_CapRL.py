@@ -257,7 +257,7 @@ if __name__ == "__main__":
                         help="Path to the main caption generation model directory.")
     parser.add_argument("--step", type=int, default=400, help="The model checkpoint step number.")
     parser.add_argument("--reward-model-path", type=str, 
-                        default="/path/ckpt/global_step700_hf", 
+                        default="/path/CapRL-Eval-3B",
                         help="Path to the local reward model.")
     parser.add_argument("--data-path", type=str, 
                         help="Path to the input dataset JSON file.")

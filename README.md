@@ -24,8 +24,13 @@
 <div align="center"></div>
 <p align="center">
   <p>
+
+
+
 🌈We are excited to introduce <strong>CapRL-3B</strong>, a lightweight 3B image captioner that achieves perception capabilities comparable to Qwen2.5-VL-72B.
 By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model, and using a carefully filtered 75K QA dataset as the training set, we obtained a highly capable captioner, CapRL-3B.
+
+
 
   </p>
 
@@ -164,6 +169,8 @@ The complete evaluation scripts can be found in the `Prism_Evaluation` folder, w
 
 
 The model used for answering questions based on captions is [CapRL-Eval-3B](https://huggingface.co/internlm/CapRL-Eval-3B), which is a finetuned version of Qwen2.5-VL-3B. When dealing with tasks such as ChartQA (not multiple-choice questions), it provides more stable output formatting.
+
+You can specify `--reward-model-path` as the path to **CapRL-Eval-3B** in `Eval_CapRL.py`.
 
 
 ### Cases
