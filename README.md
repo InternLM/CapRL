@@ -163,6 +163,9 @@ This approach allows us to assess the **informational quality and completeness**
 The complete evaluation scripts can be found in the `Prism_Evaluation` folder, with the core implementation located in `Eval_CapRL.py`.
 
 
+The model used for answering questions based on captions is [CapRL-Eval-3B](https://huggingface.co/internlm/CapRL-Eval-3B), which is a finetuned version of Qwen2.5-VL-3B. When dealing with tasks such as ChartQA (not multiple-choice questions), it provides more stable output formatting.
+
+
 ### Cases
 <a href="">
   <img src="assets/comparison.png" alt="Logo" >
