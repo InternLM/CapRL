@@ -10,7 +10,7 @@
     ·
     <a href="https://scholar.google.com/citations?user=sJkqsqkAAAAJ"><strong>Yuhang Cao</strong></a>
     ·
-    <a href="https://github.com/shikiw"><strong>Jianze Liang</strong></a>
+    <a href="https://scholar.google.com/citations?user=P4yNnSkAAAAJ&hl=zh-TW"><strong>Jianze Liang</strong></a>
     ·
     <a href="https://github.com/shikiw"><strong>Qidong Huang</strong></a>
     ·
