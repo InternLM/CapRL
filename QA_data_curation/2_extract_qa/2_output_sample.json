@@ -1,0 +1,127 @@
+[
+    {
+        "image_path": "h_cluster:s3://mllm/internvl_data/internvl_data_image_video/langchao2other/multi-modal/Super-CLEVR/images/superCLEVR_new_004806.png",
+        "qa_list": [
+            {
+                "question": "Which vehicle in the image has a blue body with red wheels?\n   - A) The green pickup truck\n   - B) The yellow car\n   - C) The blue car\n   - D) The gray car",
+                "answer": "C"
+            },
+            {
+                "question": "How many bicycles are present in the image?\n   - A) One\n   - B) Two\n   - C) Three\n   - D) Four",
+                "answer": "B"
+            },
+            {
+                "question": "What type of aircraft is depicted in the image?\n   - A) Helicopter\n   - B) Jet plane\n   - C) Propeller plane\n   - D) Fighter jet",
+                "answer": "D"
+            },
+            {
+                "question": "Which vehicle is positioned closest to the fighter jet?\n   - A) The yellow car\n   - B) The green pickup truck\n   - C) The blue car\n   - D) The gray car",
+                "answer": "A"
+            },
+            {
+                "question": "What is the color of the motorcycle in the image?\n   - A) Green\n   - B) Red\n   - C) Blue\n   - D) Yellow",
+                "answer": "A"
+            }
+        ]
+    },
+    {
+        "image_path": "h_cluster:s3://mllm/internvl_data/internvl_data_image_video/langchao2other/multi-modal/playground/data/coco/train2017/000000090393.jpg",
+        "qa_list": [
+            {
+                "question": "What activity is the person in the green shirt engaged in?\n   - A) Running\n   - B) Playing basketball\n   - C) Throwing a frisbee\n   - D) Climbing",
+                "answer": "C"
+            },
+            {
+                "question": "What type of playground equipment is visible in the background?\n   - A) Swings\n   - B) Slide\n   - C) Seesaw\n   - D) Rock climbing wall",
+                "answer": "B"
+            },
+            {
+                "question": "What is the predominant color of the trees in the foreground?\n   - A) Green\n   - B) Brown\n   - C) Yellow\n   - D) Red",
+                "answer": "B"
+            },
+            {
+                "question": "What is the weather condition depicted in the image?\n   - A) Rainy\n   - B) Sunny\n   - C) Snowy\n   - D) Cloudy",
+                "answer": "B"
+            },
+            {
+                "question": "What is the person wearing on their feet?\n   - A) Sandals\n   - B) Socks\n   - C) Sneakers\n   - D) Boots",
+                "answer": "C"
+            }
+        ]
+    },
+    {
+        "image_path": "h_cluster:s3://mllm/internvl_data/internvl_data_image_video/langchao2other/mm-dataset/ocrvqa/images/983949158.jpg",
+        "qa_list": [
+            {
+                "question": "What is the title of the book shown in the image?\n   - A) The Holy Fire\n   - B) The Unfulfilled Potential of the Church\n   - C) Finding Church\n   - D) He Loves Me",
+                "answer": "C"
+            },
+            {
+                "question": "Who is the author of the book \"Finding Church\"?\n   - A) Stephanie Bennett, Ph.D.\n   - B) Wayne Jacobsen\n   - C) The Author of The Shack\n   - D) An Unnamed Collaborator",
+                "answer": "B"
+            },
+            {
+                "question": "What question is posed on the cover of the book?\n   - A) What if there really is something more?\n   - B) Is this the holy fire needed for believers?\n   - C) How can we kindle the potential of the Church?\n   - D) What is the family of God in the 21st century?",
+                "answer": "A"
+            },
+            {
+                "question": "Which other work is the author of \"Finding Church\" known for?\n   - A) The Foreword by Stephanie Bennett, Ph.D.\n   - B) The Shining\n   - C) He Loves Me\n   - D) The Holy Fire",
+                "answer": "C"
+            },
+            {
+                "question": "What design element is prominently featured on the book cover?\n   - A) A cross\n   - B) A DNA double helix\n   - C) A church building\n   - D) A flame",
+                "answer": "B"
+            }
+        ]
+    },
+    {
+        "image_path": "h_cluster:s3://mllm/internvl_data/internvl_data_image_video/langchao2other/internvl-moe-sft-data/vrdu_texteq/astro-ph.CO/338b3edb-c88a-4bdb-833d-0b512ef5a080.png",
+        "qa_list": [
+            {
+                "question": "In the given condition \\( P \\gg 1/\\bar{n} \\), which effect dominates according to the statement?\n   - A) Shotnoise\n   - B) Cosmic variance\n   - C) Both equally\n   - D) Neither",
+                "answer": "B"
+            },
+            {
+                "question": "When does shotnoise dominate according to the statement?\n   - A) When \\( P \\gg 1/\\bar{n} \\)\n   - B) When \\( P \\ll 1/\\bar{n} \\)\n   - C) When \\( P = 1/\\bar{n} \\)\n   - D) Shotnoise never dominates",
+                "answer": "B"
+            },
+            {
+                "question": "What symbol represents the average number density in the statement?\n   - A) \\( P \\)\n   - B) \\( n \\)\n   - C) \\( \\bar{n} \\)\n   - D) \\( V \\)",
+                "answer": "C"
+            },
+            {
+                "question": "Which term describes the statistical fluctuations due to the finite number of objects being observed?\n   - A) Cosmic variance\n   - B) Shotnoise\n   - C) \\( P \\)\n   - D) \\( \\bar{n} \\)",
+                "answer": "B"
+            },
+            {
+                "question": "What does the inequality \\( P \\gg 1/\\bar{n} \\) imply about the relationship between \\( P \\) and \\( \\bar{n} \\)?\n   - A) \\( P \\) is much smaller than \\( 1/\\bar{n} \\)\n   - B) \\( P \\) is approximately equal to \\( 1/\\bar{n} \\)\n   - C) \\( P \\) is much larger than \\( 1/\\bar{n} \\)\n   - D) There is no relationship",
+                "answer": "C"
+            }
+        ]
+    },
+    {
+        "image_path": "h_cluster:s3://mllm/internvl_data/internvl_data_image_video/langchao2other/xc-mirror/MetaMathQA/179958_MetaMathQA.jpg",
+        "qa_list": [
+            {
+                "question": "How many stamps does Marie have in total before giving any away?\n   - A) 4x + 100\n   - B) 4x + 50\n   - C) x + 100\n   - D) 4x + 200",
+                "answer": "A"
+            },
+            {
+                "question": "If Marie decides to keep only 1/4 of her stamps, what fraction of her stamps will she give away?\n   - A) 1/2\n   - B) 3/4\n   - C) 1/3\n   - D) 2/3",
+                "answer": "B"
+            },
+            {
+                "question": "Given that the number of stamps Marie can give away is 135, which equation represents this situation?\n   - A) 3/4 * (4x + 100) = 135\n   - B) 1/4 * (4x + 100) = 135\n   - C) 3/4 * (4x + 50) = 135\n   - D) 1/4 * (4x + 200) = 135",
+                "answer": "A"
+            },
+            {
+                "question": "Solving the equation from question 3, what is the value of x?\n   - A) 25\n   - B) 35\n   - C) 45\n   - D) 55",
+                "answer": "B"
+            },
+            {
+                "question": "If Marie had decided to keep 1/3 of her stamps instead, how many stamps would she give away?\n   - A) 180\n   - B) 160\n   - C) 140\n   - D) 120",
+                "answer": "A"
+            }
+        ]
+    }
+]
