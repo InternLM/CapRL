@@ -43,8 +43,8 @@ By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model
 
 
 ## 📢 News
+- 🚀 [10/15/2025] We release QA curation code.
 - 🚀 [09/25/2025] We release **CapRL** repository, model, evaluation code and dataset.
-
 
 ## 💡 Highlights
 - 🔥 **Remarkable visual understanding for Chart, Infographics and Document**: CapRL-3B achieves perception accuracy and visual information coverage comparable to Qwen2.5-VL-72B.
@@ -131,6 +131,15 @@ chat_response = client.chat.completions.create(
 )
 print("Chat response:", chat_response)
 ```
+## QA Curation
+
+This part of the code is in the `QA_data_curation` folder, which contains all four steps for generating QA data:
+
+1. **QA generation.** Use Qwen2.5-VL-72B to generate 5 QAs for each image. The generation process launches a vLLM service and uses multi-threading to speed up.
+2. **QA extraction.** Extract QAs through format matching.
+3. **Qwen2.5-VL-3B answer question.** Use Qwen2.5-VL-3B to answer questions with and without images. The parameter `ROTATE_NUM` controls how many times each question is answered. If a question is answered only once, the randomness may be too high and can easily lead to misjudgment.
+4. **Filter question.** We keep QA pairs with `visual acc` higher than 0.75 and `text acc` lower than 0.25 to avoid data leakage and ensure the model can correctly answer questions when images are provided.
+
 
 ## Pretraining
 
