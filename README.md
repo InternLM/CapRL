@@ -28,8 +28,8 @@
 
 ## 📢 News
 We are working on even stronger base models and upgrading our training recipe — stay tuned!
-
-- 🚀 [16/15/2025] We are excited to announce the release of CapRL-InternVL3.5-8B, whose image captioning capability outperforms Qwen2.5-VL-72B!
+- 🔥 [10/15/2025] The total downloads of the CapRL-related model and dataset reached 6,000 within just 20 days!
+- 🚀 [10/15/2025] We are excited to announce the release of CapRL-InternVL3.5-8B, whose image captioning capability outperforms Qwen2.5-VL-72B!
 - 🚀 [10/15/2025] We release QA curation code.
 - 🚀 [09/25/2025] We release **CapRL** repository, model, evaluation code and dataset.
 
