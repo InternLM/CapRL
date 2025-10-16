@@ -19,14 +19,22 @@
   <a href="http://dahua.site/"><strong>Dahua Lin</strong></a>
 
   </p>
-  📖<a href="https://arxiv.org/abs/2509.22647">Paper</a> |🤗<a href="https://huggingface.co/internlm/CapRL-3B">CapRL-3B Model</a> |
-  🤗<a href="https://huggingface.co/datasets/internlm/CapRL-2M">CapRL-2M Dataset</a> |🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2509.22647">Daily Paper</a></h3>
+  📖<a href="https://arxiv.org/abs/2509.22647">Paper</a> |🤗<a href="https://huggingface.co/internlm/CapRL-3B">CapRL-3B Model</a> |🤗<a href="https://huggingface.co/yuhangzang/CapRL-InternVL3.5-8B">CapRL-InternVL3.5-8B Model</a> |
+  🤗<a href="https://huggingface.co/datasets/internlm/CapRL-2M">CapRL-2M Dataset</a> |🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2509.22647">Daily Paper</a>|🤗<a href="https://huggingface.co/mradermacher/CapRL-3B-GGUF">CapRL-3B-GGUF</a> ｜🤗<a href="https://huggingface.co/mradermacher/CapRL-3B-i1-GGUF">CapRL-3B-i1-GGUF</a></h3>
 <div align="center"></div>
 <p align="center">
   <p>
 
 
+## 📢 News
+We are working on even stronger base models and upgrading our training recipe — stay tuned!
 
+- 🚀 [16/15/2025] We are excited to announce the release of CapRL-InternVL3.5-8B, whose image captioning capability outperforms Qwen2.5-VL-72B!
+- 🚀 [10/15/2025] We release QA curation code.
+- 🚀 [09/25/2025] We release **CapRL** repository, model, evaluation code and dataset.
+
+
+## Introduction
 🌈We are excited to introduce <strong>CapRL-3B</strong>, a lightweight 3B image captioner that achieves perception capabilities comparable to Qwen2.5-VL-72B.
 By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model, and using a carefully filtered 75K QA dataset as the training set, we obtained a highly capable captioner, CapRL-3B.
 
@@ -38,19 +46,20 @@ By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model
   <img src="assets/teaser.png" alt="Logo" >
 </a>
 <a href="">
-  <img src="assets/performance.png" alt="Logo" >
+  <img src="assets/performance_update.png" alt="Logo" >
 </a>
 
 
-## 📢 News
-- 🚀 [10/15/2025] We release QA curation code.
-- 🚀 [09/25/2025] We release **CapRL** repository, model, evaluation code and dataset.
+
 
 ## 💡 Highlights
 - 🔥 **Remarkable visual understanding for Chart, Infographics and Document**: CapRL-3B achieves perception accuracy and visual information coverage comparable to Qwen2.5-VL-72B.
 - 🔥 **Well-organized output**: The outputs of CapRL-3B are relatively well-structured, making them clear and easy to understand.
 - 🔥 **Detailed description for natural images**: The outputs of CapRL-3B can perfectly cover all valid visual information while containing fewer hallucinations.
 
+## Model Card
+- Based on the same recipe as CapRL-3B, we used InternVL3.5-8B as the policy model and obtained CapRL-InternVL3.5-8B through CapRL.
+- CapRL-3B-GGUF is static quants version, and CapRL-3B-i1-GGUF is weighted/imatrix quants version. Thanks for their contribution!
 
 
 ## 👨‍💻 Todo
