@@ -18,20 +18,25 @@
   <a href="https://scholar.google.com/citations?user=5bInRDEAAAAJ&hl=zh-CN"><strong>Feng Wu</strong></a> ·
   <a href="http://dahua.site/"><strong>Dahua Lin</strong></a>
 
-  </p>
-  📖<a href="https://arxiv.org/abs/2509.22647">Paper</a> |🤗<a href="https://huggingface.co/internlm/CapRL-3B">CapRL-3B Model</a> |🤗<a href="https://huggingface.co/yuhangzang/CapRL-InternVL3.5-8B">CapRL-InternVL3.5-8B Model</a> |
-  🤗<a href="https://huggingface.co/datasets/internlm/CapRL-2M">CapRL-2M Dataset</a> |🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2509.22647">Daily Paper</a>|🤗<a href="https://huggingface.co/mradermacher/CapRL-3B-GGUF">CapRL-3B-GGUF</a> ｜🤗<a href="https://huggingface.co/mradermacher/CapRL-3B-i1-GGUF">CapRL-3B-i1-GGUF</a></h3>
-<div align="center"></div>
-<p align="center">
-  <p>
+📖<a href="https://arxiv.org/abs/2509.22647">Paper</a> | 🏠<a href="https://github.com/InternLM/CapRL">Github</a> |🤗<a href="https://huggingface.co/internlm/CapRL-3B">CapRL-3B Model</a> |🤗<a href="https://huggingface.co/yuhangzang/CapRL-InternVL3.5-8B">CapRL-InternVL3.5-8B Model</a> |
+  🤗<a href="https://huggingface.co/datasets/internlm/CapRL-2M">CapRL-2M Dataset</a> 
+  
+  🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2509.22647">Daily Paper</a> ｜🤗<a href="https://huggingface.co/mradermacher/CapRL-3B-GGUF">CapRL-3B-GGUF</a> ｜🤗<a href="https://huggingface.co/mradermacher/CapRL-3B-i1-GGUF">CapRL-3B-i1-GGUF</a>
 
+When selecting between the available CapRL models, it's essential to consider the trade-off between performance and computational cost.
+This guide will help you choose the most suitable model for your specific needs:
+|Model|Parameters|Strength|
+|-|-|-|
+|🤗[CapRL-3B](https://huggingface.co/internlm/CapRL-3B)|3B|Speed, Efficiency|
+|🤗[CapRL-InternVL3.5-8B](https://huggingface.co/yuhangzang/CapRL-InternVL3.5-8B)|8B|High Performance, Advanced Captioning Ability|
 
 ## 📢 News
 We are working on even stronger base models and upgrading our training recipe — stay tuned!
-- 🔥 [10/15/2025] The total downloads of the CapRL-related model and dataset reached 6,000 within just 20 days!
-- 🚀 [10/15/2025] We are excited to announce the release of CapRL-InternVL3.5-8B, whose image captioning capability outperforms Qwen2.5-VL-72B!
-- 🚀 [10/15/2025] We release QA curation code.
-- 🚀 [09/25/2025] We release **CapRL** repository, model, evaluation code and dataset.
+- 🔥 [10/15/2025] The total downloads of the CapRL-related [models and dataset](https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189) reached 6,000 within just 20 days!
+- 🚀 [10/15/2025] We are excited to announce the release of **[CapRL-InternVL3.5-8B](https://huggingface.co/internlm/CapRL-InternVL3.5-8B)**, whose image captioning capability outperforms Qwen2.5-VL-72B!
+- 🚀 [10/15/2025] Thanks [mradermacher](https://huggingface.co/mradermacher) for the valuable contribution! [CapRL-3B-GGUF](https://huggingface.co/mradermacher/CapRL-3B-GGUF) is the static quants version, and [CapRL-3B-i1-GGUF](https://huggingface.co/mradermacher/CapRL-3B-i1-GGUF) is weighted/imatrix quants version.
+- 🚀 [10/15/2025] We release [QA curation code](https://github.com/InternLM/CapRL).
+- 🚀 [09/25/2025] We release **CapRL** repository, [CapRL-3B model](https://huggingface.co/internlm/CapRL-3B), [evaluation code](https://github.com/InternLM/CapRL) and [dataset](https://huggingface.co/datasets/internlm/CapRL-2M).
 
 
 ## Introduction
