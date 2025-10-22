@@ -23,6 +23,9 @@
   
   🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2509.22647">Daily Paper</a> ｜🤗<a href="https://huggingface.co/mradermacher/CapRL-3B-GGUF">CapRL-3B-GGUF</a> ｜🤗<a href="https://huggingface.co/mradermacher/CapRL-3B-i1-GGUF">CapRL-3B-i1-GGUF</a>
 
+Now you can try out CapRL-3B with your own images🎨!&nbsp;&nbsp;&nbsp;&nbsp;➡️&nbsp;&nbsp;&nbsp;&nbsp;[🌈CapRL Space](https://huggingface.co/spaces/yuhangzang/caprl)
+
+
 When selecting between the available CapRL models, it's essential to consider the trade-off between performance and computational cost.
 This guide will help you choose the most suitable model for your specific needs:
 |Model|Parameters|Strength|
