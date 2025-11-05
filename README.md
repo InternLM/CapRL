@@ -87,6 +87,8 @@ bash setup.sh
 ## ⭐️ Quick Start
 If you want to use **CapRL-3B** for captioning, you can directly follow the exact same inference approach as in [Qwen2.5-VL-series](https://github.com/QwenLM/Qwen3-VL/tree/d2240f11656bfe404b9ba56db4e51cd09f522ff1).
 
+The prompt we use for training and evaluation is `Please describe this image in detail.`
+
 We recommend using **vLLM** to speed up inference.
 
 
@@ -125,7 +127,6 @@ base64_qwen = f"data:image;base64,{encoded_image_text}"
 chat_response = client.chat.completions.create(
     model="caprl",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
         {
             "role": "user",
             "content": [
@@ -135,7 +136,7 @@ chat_response = client.chat.completions.create(
                         "url": base64_qwen
                     },
                 },
-                {"type": "text", "text": "What is the text in the illustrate?"},
+                {"type": "text", "text": "Please describe this image in detail."},
             ],
         },
     ],
