@@ -19,7 +19,7 @@ from openai import OpenAI
 BATCH_SIZE = 100
 MAX_WORKERS = 32
 SYS_PROMPT='''Your task is to generate five multiple-choice questions and their answers about the object based on the provided image.
-The questions should be challenge and focus on the image content, you answer should strictly follow the following format:
+The questions should be challenging and focus on the image content. Your answer should strictly follow the following format:
 #### 1. **Which method achieves the highest accuracy (Acc) on the FF++ (HQ) dataset?**
    - A) Method "a"
    - B) Method "b"
@@ -36,7 +36,7 @@ The questions should be challenge and focus on the image content, you answer sho
 
 **Answer:** B) Red 
 ------
-You should strictly follow the above format and should not generate irrelevant sentences. All the quesiton should be answered based on the image.
+You should strictly follow the above format and should not generate irrelevant sentences. All the questions should be answered based on the image.
 '''
 PROMPT='Here is the image'
 
