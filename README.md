@@ -65,7 +65,7 @@ By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model
   <img src="assets/teaser.png" alt="Logo" >
 </a>
 <a href="">
-  <img src="assets/performance_update.png" alt="Logo" >
+  <img src="assets/performance_caprl2_0.png" alt="Logo" >
 </a>
 
 
