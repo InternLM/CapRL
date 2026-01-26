@@ -44,6 +44,7 @@ Now you can try out CapRL with your own images🎨!&nbsp;&nbsp;&nbsp;&nbsp;➡�
 
 ## 📢 News
 We are working on even stronger base models and upgrading our training recipe — stay tuned!
+- 🔥 [1/27/2026] CapRL is accepted by ICLR2026! We are working on cleaning training code, and will release everything as soon as possible!
 - 🔥 [12/24/2025] We are excited to release the CapRL 2.0 series: **[CapRL-Qwen3VL-2B](https://huggingface.co/internlm/CapRL-Qwen3VL-2B)** and **[CapRL-Qwen3VL-4B](https://huggingface.co/internlm/CapRL-Qwen3VL-4B)**!
 - 🔥 [12/24/2025] The total downloads of the CapRL-related [models and dataset](https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189) reached 17,000!
 - 🔥 [10/15/2025] The total downloads of the CapRL-related [models and dataset](https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189) reached 6,000 within just 20 days!
