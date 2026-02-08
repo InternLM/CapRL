@@ -44,6 +44,7 @@ Now you can try out CapRL with your own images🎨!&nbsp;&nbsp;&nbsp;&nbsp;➡�
 
 ## 📢 News
 We are working on even stronger base models and upgrading our training recipe — stay tuned!
+- 🔥 [2/9/2026] We release the CapRL training code.
 - 🔥 [1/27/2026] CapRL is accepted by ICLR2026! We are working on cleaning training code, and will release everything as soon as possible!
 - 🔥 [12/24/2025] We are excited to release the CapRL 2.0 series: **[CapRL-Qwen3VL-2B](https://huggingface.co/internlm/CapRL-Qwen3VL-2B)** and **[CapRL-Qwen3VL-4B](https://huggingface.co/internlm/CapRL-Qwen3VL-4B)**!
 - 🔥 [12/24/2025] The total downloads of the CapRL-related [models and dataset](https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189) reached 17,000!
@@ -84,9 +85,7 @@ By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model
 
 ## 👨‍💻 Todo
 
-- [ ] Release training code.
 - [ ] Release 75k QA dataset.
-- [ ] Release CapRL-series on stronger base model.
 
 ## 🛠️ Setup
 
@@ -226,7 +225,10 @@ To reproduce the pretraining experiments presented in our paper:
    Follow the steps in the notebook [`initiallize_vlm_3b.ipynb`](https://github.com/Cooperx521/ScaleCap/blob/892ad0682defa37f54833c3c4284a9d9a5c3451e/grocery_file/initiallize_vlm_3b.ipynb) to set up the Qwen2.5-VL model for training.
 
 2. **Training.**
-   You can then use [LLaMAFactory](https://github.com/hiyouga/LLaMA-Factory) directly to run the training process.
+   We use [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) for pretraining. The training scripts are provided in `Pretraining_exp/scripts/`, covering all 3 stages:
+   - `Stage0_initial_align.sh` — Initial alignment with LLaVA-558K
+   - `Stage1_further_pretrain.sh` — Further pretraining with CapRL-1M caption data
+   - `Stage2_sft.sh` — SFT with general instruction data, Open-LLaVA-NeXT-1M
 
 
 
