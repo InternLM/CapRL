@@ -89,12 +89,20 @@ By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model
 - [ ] Release CapRL-series on stronger base model.
 
 ## 🛠️ Setup
-```
+
+### Installation
+
+```bash
 git clone https://github.com/InternLM/CapRL.git
+cd CapRL/CapRL_Training
 conda create -n CapRL python=3.10
 conda activate CapRL
 bash setup.sh
 ```
+
+The `setup.sh` will sequentially:
+1. Install key dependencies with pinned versions (torch, transformers, vllm, deepspeed, flash-attn, ray, etc.)
+2. Install the OpenRLHF-based training framework and remaining dependencies via `pip install -e .`
 
 ## ⭐️ Quick Start
 If you want to use **CapRL-3B** for captioning, you can directly follow the exact same inference approach as in [Qwen2.5-VL-series](https://github.com/QwenLM/Qwen3-VL/tree/d2240f11656bfe404b9ba56db4e51cd09f522ff1).
@@ -171,6 +179,32 @@ This part of the code is in the `QA_data_curation` folder, which contains all fo
 4. **Filter question.** We keep QA pairs with `visual acc` higher than 0.75 and `text acc` lower than 0.25 to avoid data leakage and ensure the model can correctly answer questions when images are provided.
 
 
+## CapRL Training
+
+All training scripts are located in `CapRL_Training/scripts/`. Taking `qwen2.5vl3b_75k_reward_qwen2.5_3b` as an example:
+
+**Step 1: Start the reward server**
+
+```bash
+cd CapRL_Training
+bash scripts/qwen2.5vl3b_75k_reward_qwen2.5_3b/reward/rjob.sh
+```
+
+Once the reward server is running, note its **IP address**.
+
+**Step 2: Launch training**
+
+Set `<REWARD_SERVER_IP>` in `training/launch.sh` to the IP from Step 1, then:
+
+```bash
+bash scripts/qwen2.5vl3b_75k_reward_qwen2.5_3b/training/rjob.sh
+```
+
+
+> **Note:** The training scripts require `vllm>=0.11.0` for Qwen3-VL compatibility. However, the reward server using Qwen2.5/Qwen3 LLM may occasionally encounter issues with higher vLLM versions. We recommend running the reward server in a separate conda environment with a lower version such as `vllm==0.10.1`.
+
+**A note on migrating CapRL to other codebases:** Our training code is built on OpenRLHF, which originally lacked VLM (e.g., Qwen3-VL) RL training support. We added VLM adaptation and CapRL's two-stage reward on top of it. If you prefer a more lightweight alternative, consider using [VeRL](https://github.com/volcengine/verl), which natively supports VLM training — you only need to customize the reward computation (e.g., by querying a vLLM reward server). If there is demand for VeRL integration, please open an issue to let us know.
+
 ## Pretraining
 
 ### Datasets
@@ -193,6 +227,7 @@ To reproduce the pretraining experiments presented in our paper:
 
 2. **Training.**
    You can then use [LLaMAFactory](https://github.com/hiyouga/LLaMA-Factory) directly to run the training process.
+
 
 
 ## Comparing Caption Quality via Prism Framework
