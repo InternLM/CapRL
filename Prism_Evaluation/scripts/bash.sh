@@ -9,6 +9,7 @@ export NNODES=${NODE_COUNT:-2}
 export PROC_PER_NODE=${PROC_PER_NODE:-1}
 
 export MODEL="PATH/CapRL/CapRL-3B"
+export IMAGE_ROOT="PATH"
 
 # (100 200 300 400 500 600 700 800 900 1000 1100 1200)
 export STEPS=(100 200 300 400 500 600 700 800 900 1000 1100 1200)
@@ -74,6 +75,7 @@ export GEN_NUM=4
 CUDA_VISIBLE_DEVICES=0 python -u -m Eval_CapRL \
     --model-path ${MODEL} \
     --data-path ${DATA} \
+    --image-root ${IMAGE_ROOT} \
     --step ${STEP} \
     --tag ${TAG} \
     --gen_num ${GEN_NUM} \
@@ -83,6 +85,7 @@ CUDA_VISIBLE_DEVICES=0 python -u -m Eval_CapRL \
 CUDA_VISIBLE_DEVICES=0 python -u -m Eval_CapRL \
     --model-path ${MODEL} \
     --data-path ${DATA} \
+    --image-root ${IMAGE_ROOT} \
     --step ${STEP} \
     --tag ${TAG} \
     --gen_num ${GEN_NUM} \
