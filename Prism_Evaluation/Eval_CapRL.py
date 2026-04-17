@@ -78,6 +78,19 @@ cap_prompt = '''<|im_start|>user
 <|im_start|>assistant
 '''
 
+def resolve_image_paths(obj, image_root):
+    if isinstance(obj, dict):
+        resolved = {}
+        for key, value in obj.items():
+            if key == "image" and isinstance(value, str):
+                resolved[key] = value if os.path.isabs(value) else os.path.join(image_root, value)
+            else:
+                resolved[key] = resolve_image_paths(value, image_root)
+        return resolved
+    if isinstance(obj, list):
+        return [resolve_image_paths(item, image_root) for item in obj]
+    return obj
+
 def run_evaluation_pipeline(args):
     """
     Runs the full evaluation pipeline: Stage 1 (Generation) followed by
@@ -114,6 +127,7 @@ def run_evaluation_pipeline(args):
             with open(args.data_path) as f: data_samples = json.load(f)
 
         print(f"Loaded {len(data_samples)} samples from {args.data_path}")
+        data_samples = resolve_image_paths(data_samples, os.path.abspath(args.image_root))
 
         # (The pre-computation and adaptive batching logic remains the same)
         print("Preprocessing samples for adaptive batching...")
@@ -261,6 +275,8 @@ if __name__ == "__main__":
                         help="Path to the local reward model.")
     parser.add_argument("--data-path", type=str, 
                         help="Path to the input dataset JSON file.")
+    parser.add_argument("--image-root", type=str, required=True,
+                        help="Root directory for relative image paths in the input dataset.")
     parser.add_argument("--tag", type=str, default="Seed2K", help="A tag for naming output files.")
     # Generation parameters
     parser.add_argument("--temperature", type=float, default=1.0)

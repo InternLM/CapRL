@@ -86,7 +86,7 @@ By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model
 
 ## 👨‍💻 Todo
 
-- [ ] Release 75k QA dataset.
+- ✅ Release 75k QA dataset.
 
 ## 🛠️ Setup
 
@@ -243,6 +243,24 @@ We evaluate caption quality by **decoupling the traditional VQA (Visual Question
 This approach allows us to assess the **informational quality and completeness** of the generated captions — if the language model can accurately answer visual questions based only on the caption, then the caption is likely high-quality.
 
 The complete evaluation scripts can be found in the `Prism_Evaluation` folder, with the core implementation located in `Eval_CapRL.py`.
+
+The Prism evaluation files are available at [CapRL-Evaluation-Files](https://huggingface.co/datasets/internlm/CapRL-Evaluation-Files). The dataset contains `json_file/` for the evaluation JSON files and `bench_image_folder.zip` for the corresponding images.
+
+```bash
+huggingface-cli download internlm/CapRL-Evaluation-Files --repo-type dataset --local-dir CapRL-Evaluation-Files
+cd CapRL-Evaluation-Files
+unzip bench_image_folder.zip
+```
+
+Use the JSON files under `json_file/` as `--data-path` and pass the dataset root as `--image-root`. The image paths inside each JSON are relative to the dataset root, for example `bench_image_folder/lmm_eval_chartqa/41699051005347.png`.
+
+```bash
+python -m Eval_CapRL \
+  --data-path /path/to/CapRL-Evaluation-Files/json_file/lmm_eval_chartqa.json \
+  --image-root /path/to/CapRL-Evaluation-Files \
+  --tag chartqa \
+  ...
+```
 
 
 The model used for answering questions based on captions is [CapRL-Eval-3B](https://huggingface.co/internlm/CapRL-Eval-3B), which is a finetuned version of Qwen2.5-VL-3B. When dealing with tasks such as ChartQA (not multiple-choice questions), it provides more stable output formatting.
