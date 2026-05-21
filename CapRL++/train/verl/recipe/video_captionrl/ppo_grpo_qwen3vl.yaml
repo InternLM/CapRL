@@ -1,0 +1,84 @@
+hydra:
+  searchpath:
+    - file://verl/trainer/config
+
+defaults:
+  - ppo_trainer
+  - _self_
+
+data:
+  train_files: ["/data/video_captionrl/train.jsonl"]
+  val_files: ["/data/video_captionrl/val.jsonl"]
+  caption_log_dir: "/video_captionrl/captions"
+  train_batch_size: 64  
+  gen_batch_size: 64    
+  prompt_key: "prompt"
+  input_type: "video"
+  image_key: "images"
+  video_key: "videos"
+  ground_truth_key: "ground_truth" 
+  return_raw_chat: true
+  max_prompt_length: 2048
+  max_response_length: 4096
+  truncation: "left"
+  filter_overlong_prompts: true
+  shuffle: true
+
+actor_rollout_ref:
+  model:
+    path: "/models/Qwen3-VL-4B"
+    trust_remote_code: true
+  actor:
+    strategy: "fsdp"
+    use_kl_loss: false
+    ppo_mini_batch_size: 64
+    ppo_micro_batch_size_per_gpu: 2
+    grad_clip: 1.0
+    optim:
+      lr: 1e-5
+      weight_decay: 0.0
+  rollout:
+    name: "vllm"
+    mode: "async"
+    n: 8 
+    temperature: 1.0
+    top_p: 1.0
+    top_k: -1
+    prompt_length: 2048
+    response_length: 4096
+    max_model_len: 16384
+    gpu_memory_utilization: 0.85
+    tensor_model_parallel_size: 1
+    log_prob_micro_batch_size_per_gpu: 16
+    engine_kwargs:
+      vllm:
+        disable_mm_preprocessor_cache: true
+        enforce_eager: false 
+        enable_prefix_caching: true 
+
+algorithm:
+  adv_estimator: "grpo"
+  use_kl_in_reward: false
+  kl_ctrl:
+    kl_coef: 0.0
+
+critic:
+  enable: false
+
+reward:
+  custom_reward_function:
+    path: "recipe/video_captionrl/reward_fn.py"
+    name: "compute_score"
+
+
+trainer:
+  nnodes: 1
+  n_gpus_per_node: 8
+  total_epochs: 1
+  save_freq: 100
+  test_freq: -1
+  val_before_train: false
+  project_name: "video_captionrl"
+  experiment_name: "grpo_qwen3vl"
+  logger: ["console"]
+  max_ckpt_to_keep: None

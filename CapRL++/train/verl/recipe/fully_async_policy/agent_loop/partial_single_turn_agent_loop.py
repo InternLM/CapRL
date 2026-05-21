@@ -1,0 +1,95 @@
+# Copyright 2025 Meituan Ltd. and/or its affiliates
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import logging
+import os
+from typing import Any, Optional
+from uuid import uuid4
+
+from verl.experimental.agent_loop import AgentLoopBase
+from verl.experimental.agent_loop.agent_loop import AgentLoopOutput, register
+from verl.utils.profiler import simple_timer
+
+logger = logging.getLogger(__file__)
+logger.setLevel(os.getenv("VERL_LOGGING_LEVEL", "WARN"))
+
+
+@register("partial_single_turn_agent")
+class PartialSingleTurnAgentLoop(AgentLoopBase):
+    """Naive agent loop that only do single turn chat completion."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.prompt_length = self.config.actor_rollout_ref.rollout.prompt_length
+        self.response_length = self.config.actor_rollout_ref.rollout.response_length
+        self.apply_chat_template_kwargs = self.config.data.get("apply_chat_template_kwargs", {})
+
+    async def run(self, sampling_params: dict[str, Any], **kwargs) -> AgentLoopOutput:
+        output: Optional[AgentLoopOutput] = kwargs.get("output", None)
+        messages = list(kwargs["raw_prompt"])
+        param_version = kwargs.get("param_version", 0)
+
+        metrics = {}
+        request_id = uuid4().hex
+
+        # Extract images AND videos from messages (like SingleTurnAgentLoop)
+        multi_modal_data = await self.process_vision_info(messages)
+        images = multi_modal_data.get("images")
+        videos = multi_modal_data.get("videos")
+
+        param_version_start = param_version
+        param_version_end = param_version
+
+        if not output:
+            prompt_ids_for_training, prompt_ids_for_vllm = await self.apply_chat_template(
+                messages, images=images, videos=videos,
+            )
+        else:
+            if output.extra_fields.get("is_cancel", False):
+                prompt_ids_for_training = output.prompt_ids
+                prompt_ids_for_vllm = output.prompt_ids + output.response_ids
+                metrics["generate_sequences"] = output.metrics.generate_sequences
+                param_version_start = output.extra_fields.get("param_version_start", param_version)
+            else:
+                return output
+        with simple_timer("generate_sequences", metrics):
+            response_ids, response_logprobs, is_cancel = await self.server_manager.generate_for_partial(
+                request_id=request_id,
+                prompt_ids=prompt_ids_for_vllm,
+                sampling_params=sampling_params,
+                image_data=images,
+                video_data=videos,
+            )
+        if not output:
+            response_mask = [1] * len(response_ids)
+        else:
+            prompt_ids_for_training = output.prompt_ids
+            response_logprobs = output.response_logprobs + response_logprobs
+            response_ids = output.response_ids + response_ids
+            response_mask = [1] * len(response_ids)
+        if len(response_ids) >= self.response_length:
+            is_cancel = False
+
+        return AgentLoopOutput(
+            prompt_ids=prompt_ids_for_training,
+            response_ids=response_ids[: self.response_length],
+            response_mask=response_mask[: self.response_length],
+            response_logprobs=response_logprobs[: self.response_length],
+            num_turns=2,
+            metrics=metrics,
+            extra_fields={
+                "is_cancel": is_cancel,
+                "param_version_start": param_version_start,
+                "param_version_end": param_version_end,
+            },
+        )
