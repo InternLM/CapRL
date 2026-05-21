@@ -1,0 +1,11 @@
+numpy
+tqdm
+openai
+httpx
+decord
+pillow
+transformers
+torch
+vllm
+moviepy==1.0.3
+pyyaml
