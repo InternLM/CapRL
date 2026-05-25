@@ -44,6 +44,10 @@ Now you can try out CapRL with your own images🎨!&nbsp;&nbsp;&nbsp;&nbsp;➡�
 
 ## 📢 News
 We are working on even stronger base models and upgrading our training recipe — stay tuned!
+- 🔥 [05/25/2026] We have released the training and evaluation code for CapRL++. See mroe in `CapRL++` folder.
+- 🔥 [05/22/2026] We have released the **[CapRL-Video-QA-20K](https://huggingface.co/datasets/internlm/CapRL-Video-QA-20K)** dataset for CapRL++ training and 
+the **[CapRL-Video-178K](https://huggingface.co/datasets/internlm/CapRL-Video-178K)** dataset (recaptioned by **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** from LLaVA-Video-178K)!
+- 🔥 [05/22/2026] **CapRL++** is coming! We have released the **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** model designed for video captioning!
 - 🔥 [04/16/2026] We have released the **[CapRL-QA-75K](https://huggingface.co/datasets/internlm/CapRL-QA-75K)** training dataset!
 - 🔥 [2/9/2026] We release the CapRL training code.
 - 🔥 [1/27/2026] CapRL is accepted by ICLR2026! We are working on cleaning training code, and will release everything as soon as possible!
