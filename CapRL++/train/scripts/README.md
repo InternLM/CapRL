@@ -36,7 +36,7 @@ You also need:
   `Qwen3-VL-4B-Instruct`;
 - a reward model, for example a local path or Hugging Face id for
   `Qwen3-4B-Instruct` when using `REWARD_SCORE_MODE=qa`;
-- a training JSONL file compatible with the CapRL++ data loader (our training data has been released on HuggingFace)
+- a training JSONL file compatible with the CapRL++ data loader (our training data **[CapRL-Video-QA-20K](https://huggingface.co/datasets/internlm/CapRL-Video-QA-20K)** has been released);
 - writable output directories for checkpoints and optional W&B logs.
 
 ## 1. Start the reward service
@@ -149,8 +149,3 @@ comments:
 data.input_type=image
 data.prompt_key=prompt
 ```
-
-If image training is your primary open-source path, add those two overrides to
-the `python -m verl.trainer.main_ppo` command in `train_caprl.sh`, or create a
-small image-specific wrapper script that calls the same verl config with those
-extra overrides.
