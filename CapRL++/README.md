@@ -1,7 +1,7 @@
 # CapRL++
 
-CapRL++ is an extension of CapRL for video caption reinforcement learning and
-Prism-style video caption evaluation. While the original CapRL release focuses
+CapRL++ is an extension of CapRL for video caption reinforcement learning.
+While the original CapRL release focuses
 on dense image captioning, CapRL++ keeps the same central idea: train a caption
 model with reward signals that measure whether the generated caption preserves
 enough visual information for downstream question answering.
