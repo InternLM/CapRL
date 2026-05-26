@@ -1,13 +1,14 @@
 """
-Reward 节点服务：提供 /get_reward 接口（默认端口 18889），与 reward_fn.py 的 REWARD_REMOTE_URL 配套。
-与 CapRL_repo reward_server/serve_rm.py 协议一致，去掉了对 openrlhf 的依赖，统一放在 verl 下。
+Reward server for video_captionrl. It exposes /get_reward and is used by
+reward_fn.py through REWARD_REMOTE_URL.
 
-评分模式（--score_mode）：
-  qa       : 原有 caption + 多选题 QA 正确率（默认）
-  vl_judge : 视频+caption LLM-as-a-judge 直接打分（需多模态 VLM）
+Score modes:
+  qa       : caption-based multiple-choice QA accuracy
+  vl_judge : direct video-caption scoring with a multimodal judge
 
---task image：沿用 CapRL 图像 caption 多选题 prompt；不使用时间戳 format reward。
---task video：视频 caption + 时间戳相关示例；可选 format_reward（见 --format_reward_weight）。
+Tasks:
+  image: image caption QA without timestamp format reward
+  video: video caption QA with optional timestamp format reward
 """
 import argparse
 import json
@@ -76,7 +77,6 @@ def shuffle_options(question, answer):
             raise ValueError(f"ERROR: {opt}")
     correct_answer_label = answer
     if correct_answer_label not in original_options:
-        # 与 CapRL reward_server/serve_rm.py 一致：标签与解析到的选项不一致时不抛错，跳过 shuffle，避免训练中断
         logger.warning(
             "shuffle_options: label %r not in parsed options %s; skipping shuffle (question/label mismatch or format).",
             correct_answer_label,
@@ -109,7 +109,6 @@ sampling_params = SamplingParams(
     stop_token_ids=[],
 )
 
-# 与 CapRL reward_server/serve_rm.py 中 image 分支一致
 PROMPT_IMAGE = """<|im_start|>user
 You will be given an image caption describing the visual content.  
 Your task is to answer the multiple-choice question **strictly based on the caption**, even if the answer may seem obvious from prior knowledge or question wording.
@@ -145,7 +144,6 @@ Question: {}  <|im_end|>
 <|im_start|>assistant
 The answer is"""
 
-# 视频 caption：强调时间戳与事件顺序（与原 video_captionrl 实现一致）
 PROMPT_VIDEO = """<|im_start|>user
         You will be given a video caption describing visual content and events over time.  
         Your task is to answer the multiple-choice question **strictly based on the caption**, even if the answer may seem obvious from prior knowledge or question wording.
@@ -191,7 +189,7 @@ def parse_easy(answer, gt):
     return 0
 
 
-# 与「[mm:ss] / [mm:ss - mm:ss]」时间戳格式对齐的 format reward（无需额外 LLM）
+# Timestamp format reward for [mm:ss] and [mm:ss - mm:ss] brackets.
 _TIMESTAMP_BRACKET = re.compile(
     r"\[(\d{1,3}):(\d{2})(?:\s*-\s*(\d{1,3}):(\d{2}))?\]",
     re.IGNORECASE,
@@ -199,7 +197,7 @@ _TIMESTAMP_BRACKET = re.compile(
 
 
 def _parse_ts_groups(m: re.Match, max_minute: int = 599) -> tuple:
-    """返回 (start_sec, end_sec_or_none, ok)。非法则为 ok=False。"""
+    """Return (start_sec, end_sec_or_none, ok)."""
     mm, ss = int(m.group(1)), int(m.group(2))
     if not (0 <= ss <= 59) or mm < 0 or mm > max_minute:
         return 0, None, False
@@ -217,20 +215,19 @@ def _parse_ts_groups(m: re.Match, max_minute: int = 599) -> tuple:
 
 def compute_format_reward(
     text: str,
-    min_brackets: int = 3,
     max_minute: int = 599,
 ) -> float:
     """
-    对视频 caption 的时间戳格式打分，范围约 [0, 1]。
+    Score timestamp bracket formatting for video captions in [0, 1].
 
-    设计要点（与你的 prompt 一致）：
-    - **括号与模式**：仅认可形如 ``[mm:ss]`` 或 ``[mm:ss - mm:ss]`` 的片段（方括号 + 冒号分隔）。
-    - **数值合法**：秒在 0–59；分钟分量不超过 ``format_max_minute``（默认 599）。
-    - **区间合法**：区间右端不得早于左端。
-    - **密度**：有效时间戳数量相对 ``min_brackets`` 饱和（鼓励多段、细粒度锚点）。
-    - **时序（出现顺序）**：按文中**出现顺序**取每段的起始时间，要求非递减；体现「按时间顺序写」。
+    Let S be the timestamp-like brackets matched by the regex, and N_all=|S|.
+    N_valid counts brackets satisfying logical constraints: valid seconds,
+    minute upper bound, and interval end time no earlier than start time.
 
-    子分项加权：覆盖度、语法/合法性、顺序一致性；全为 0 时返回 0。
+        0.5 * N_valid / max(N_all, 1) + 0.5 * I_chrono
+
+    I_chrono is 1 when at least one valid timestamp exists and valid start
+    times are monotonically non-decreasing in caption order; otherwise 0.
     """
     if not text or not str(text).strip():
         return 0.0
@@ -248,26 +245,12 @@ def compute_format_reward(
         valid += 1
         starts_in_order.append(t0)
 
-    if valid == 0:
-        return 0.0
-
-    # 合法括号占「看起来像时间戳的括号」比例（惩罚乱写占位）
     validity = valid / max(len(matches), 1)
+    chrono = 0.0
+    if valid > 0 and all(starts_in_order[i] <= starts_in_order[i + 1] for i in range(len(starts_in_order) - 1)):
+        chrono = 1.0
 
-    # 密度：至少 min_brackets 个有效段即满分
-    coverage = min(1.0, float(valid) / float(max(min_brackets, 1)))
-
-    # 顺序：按出现顺序的起始时间应非递减
-    if len(starts_in_order) < 2:
-        order_score = 1.0
-    else:
-        order_score = 1.0 if all(
-            starts_in_order[i] <= starts_in_order[i + 1] for i in range(len(starts_in_order) - 1)
-        ) else 0.0
-
-    # 略提高「数量+合法」权重，顺序作为硬约束项
-    fmt = 0.45 * coverage * validity + 0.25 * validity + 0.30 * order_score * validity
-    return float(max(0.0, min(1.0, fmt)))
+    return float(0.5 * validity + 0.5 * chrono)
 
 
 # ===================== VL Judge prompt =====================
@@ -347,7 +330,6 @@ class RewardModelProxy:
         self.shuffle_qa = args.shuffle_qa
         self.all_qa = args.all_qa
         self.format_reward_weight = float(getattr(args, "format_reward_weight", 0.0))
-        self.format_min_brackets = int(getattr(args, "format_min_brackets", 3))
         self.format_max_minute = int(getattr(args, "format_max_minute", 599))
         if self.score_mode == "qa":
             assert not (self.shuffle_qa and self.all_qa)
@@ -420,13 +402,9 @@ class RewardModelProxy:
 
     def get_reward_vl_judge(self, samples):
         """
-        VL Judge 模式：接收 [{"caption": ..., "video_path": ...}, ...]，
-        构造多模态 prompt 让 VLM 看视频并打分。
-
-        Qwen3-VL 的 vLLM processor 标记了 video_needs_metadata=True，
-        要求 multi_modal_data["video"] 中每个元素是 (ndarray, metadata_dict) 元组。
-        手动用 decord 读取视频帧，以 fps=2 采样后构建这个元组。
-        视频帧使用线程池并行加载以加速大批量请求。
+        Score [{"caption": ..., "video_path": ...}, ...] with a multimodal judge.
+        Qwen3-VL under vLLM expects each video item as (ndarray, metadata_dict),
+        so frames are loaded with decord before generation.
         """
         from concurrent.futures import ThreadPoolExecutor
 
@@ -503,7 +481,6 @@ class RewardModelProxy:
             vp0 = samples[0].get("video_path", "") if samples else ""
             if vp0:
                 print("[vl_judge] video_path (first):", vp0, flush=True)
-            # prompt 以 vision 占位符开头，[:300] 往往截不到 caption，仅作调试参考
             print("[vl_judge] input prompt tail (first, last 512 chars):", inputs[0].get("prompt", "")[-512:], flush=True)
             print("[vl_judge] output (first):", generated_texts[0][:300], flush=True)
             print("[vl_judge] rewards:", rewards, flush=True)
@@ -627,14 +604,13 @@ class RewardModelProxy:
             fixed_qa_num = qa_num
 
         qa_rewards = list(rewards)
-        # 时间戳 format 仅用于 video；image 任务忽略 format 权重
+        # Timestamp format reward is only used for video tasks.
         w_fmt = self.format_reward_weight if self.task == "video" else 0.0
         format_rewards = None
         if w_fmt > 0.0:
             format_rewards = [
                 compute_format_reward(
                     cap if isinstance(cap, str) else str(cap),
-                    min_brackets=self.format_min_brackets,
                     max_minute=self.format_max_minute,
                 )
                 for cap, _ in prompts
@@ -899,39 +875,33 @@ if __name__ == "__main__":
         "--format_reward_weight",
         type=float,
         default=0.0,
-        help="与 QA reward 相加融合：final=qa + w*format；0 表示关闭（默认）。",
-    )
-    parser.add_argument(
-        "--format_min_brackets",
-        type=int,
-        default=3,
-        help="format reward 中「有效时间戳段数」达到该值时覆盖度项饱和。",
+        help="Fuse with QA reward as final=qa + w*format. Set 0 to disable.",
     )
     parser.add_argument(
         "--format_max_minute",
         type=int,
         default=599,
-        help="单段 mm 分量的上界（分钟），超长视频可调大。",
+        help="Maximum allowed minute component in a timestamp bracket.",
     )
     parser.add_argument(
         "--task",
         type=str,
         choices=["image", "video"],
         default="video",
-        help="image：CapRL 图像 caption QA；video：视频 caption + 可选时间戳 format reward。",
+        help="image: image caption QA; video: video caption QA with optional timestamp format reward.",
     )
     parser.add_argument(
         "--score_mode",
         type=str,
         choices=["qa", "vl_judge"],
         default="qa",
-        help="qa：caption+QA 正确率（默认）；vl_judge：视频+caption LLM-as-a-judge 直评。",
+        help="qa: caption QA accuracy; vl_judge: direct video-caption LLM-as-a-judge scoring.",
     )
     parser.add_argument(
         "--judge_max_model_len",
         type=int,
         default=18000,
-        help="vl_judge 模式下 vLLM 的 max_model_len（需容纳视频 token + prompt），默认 18000。",
+        help="vLLM max_model_len for vl_judge mode.",
     )
     args = parser.parse_args()
 

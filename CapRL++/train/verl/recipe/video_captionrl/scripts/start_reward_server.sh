@@ -1,30 +1,26 @@
 #!/usr/bin/env bash
-# =============================================================================
-# VERL Caption RL — 统一 Reward Server 启动脚本（master + workers）
-# Python 入口：verl/recipe/video_captionrl/serve_rm.py
+# Start the video_captionrl reward server as one master and one or more workers.
 #
-# 环境变量（常用）：
-#   REWARD_SCORE_MODE=qa|vl_judge  评分模式，默认 qa；vl_judge 启用 LLM-as-a-judge
-#   REWARD_TASK=video|image     默认 video；image 时使用与 CapRL 一致的图像 caption prompt
-#   VERL_ROOT                   默认本仓库上级推断或见下方默认值
+# Common environment variables:
+#   REWARD_SCORE_MODE=qa|vl_judge
+#   REWARD_TASK=video|image
+#   VERL_ROOT
 #   CONDA_ROOT / REWARD_CONDA_ENV
-#   REWARD_MODEL                reward 模型路径
-#   REWARD_PORT                 master 端口，默认 18889
-#   REWARD_WORKER_BASE          worker 起始端口，默认 18899
-#   REWARD_NUM_WORKERS          默认 8
-#   REWARD_TP                   vLLM TP，默认 1
-#   REWARD_SHUFFLE_QA           1 表示 --shuffle_qa（仅 qa 模式）
-#   REWARD_QA_NUM               每条 caption 抽样 QA 题数（仅 qa 模式），默认 8
-#   FORMAT_REWARD_WEIGHT        仅 video+qa 默认 0.2；image 默认 0
-#   FORMAT_MIN_BRACKETS         默认 3
-#   ZERO_REWARD_LOG_PATH        可选，None 表示不写
-#   CUDA_HOME                     需含 bin/nvcc；vLLM+FlashInfer JIT 编译采样算子时会调用 nvcc。
-#                                 若 Pod 无 /usr/local/cuda，请与训练脚本一致设置（见下方自动探测）。
+#   REWARD_MODEL
+#   REWARD_PORT
+#   REWARD_WORKER_BASE
+#   REWARD_NUM_WORKERS
+#   REWARD_TP
+#   REWARD_SHUFFLE_QA
+#   REWARD_QA_NUM
+#   FORMAT_REWARD_WEIGHT
+#   FORMAT_MAX_MINUTE
+#   ZERO_REWARD_LOG_PATH
+#   CUDA_HOME
 #
-# 用法示例：
+# Examples:
 #   REWARD_TASK=video bash .../start_reward_server.sh
 #   REWARD_SCORE_MODE=vl_judge REWARD_MODEL=/path/to/Qwen2.5-VL-72B bash .../start_reward_server.sh
-# =============================================================================
 set -x
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -41,19 +37,17 @@ REWARD_WORKER_BASE="${REWARD_WORKER_BASE:-18899}"
 REWARD_NUM_WORKERS="${REWARD_NUM_WORKERS:-8}"
 REWARD_TP="${REWARD_TP:-1}"
 REWARD_QA_NUM="${REWARD_QA_NUM:-8}"
+FORMAT_MAX_MINUTE="${FORMAT_MAX_MINUTE:-599}"
 JUDGE_MAX_MODEL_LEN="${JUDGE_MAX_MODEL_LEN:-18000}"
 
 : "${REWARD_MODEL:?Set REWARD_MODEL to the reward model path or Hugging Face model id.}"
 
 if [[ "$REWARD_TASK" == "video" ]]; then
   FORMAT_REWARD_WEIGHT="${FORMAT_REWARD_WEIGHT:-0.2}"
-  FORMAT_MIN_BRACKETS="${FORMAT_MIN_BRACKETS:-3}"
 else
   FORMAT_REWARD_WEIGHT="${FORMAT_REWARD_WEIGHT:-0}"
-  FORMAT_MIN_BRACKETS="${FORMAT_MIN_BRACKETS:-3}"
 fi
 
-# 若需记录全零 reward 样本，设置路径；留空则不传参（与 argparse default=None 一致）
 # ZERO_REWARD_LOG_PATH=/path/to/zero.jsonl
 
 SHUFFLE_QA="${REWARD_SHUFFLE_QA:-1}"
@@ -66,7 +60,7 @@ MASTER_PID=""
 
 do_cleanup() {
   echo ""
-  echo "[清理] 正在彻底清理 reward server 相关进程和端口..."
+  echo "[cleanup] Stopping reward server processes and freeing ports..."
   if [[ "${CLEANUP_DONE:-0}" == "1" ]]; then return 0; fi
   CLEANUP_DONE=1
 
@@ -87,8 +81,8 @@ do_cleanup() {
   pkill -9 -f "recipe/video_captionrl/serve_rm.py" 2>/dev/null || true
   pkill -9 -f "serve_rm.py" 2>/dev/null || true
 
-  echo "[清理] 已彻底清理。"
-  echo "[清理] 进入 shell 以保持容器不退出；输入 exit 再回车可真正退出。"
+  echo "[cleanup] Done."
+  echo "[cleanup] Opening an interactive shell to keep the container alive; type exit to quit."
   exec bash -i
 }
 
@@ -115,7 +109,6 @@ if [[ -n "$CONDA_ROOT" && -n "$REWARD_CONDA_ENV" ]]; then
   conda activate "$REWARD_CONDA_ENV"
 fi
 
-# vLLM v1 + FlashInfer 首次运行会 JIT 编译 CUDA 扩展，必须能找到 nvcc（错误常见：/usr/local/cuda/bin/nvcc not found）
 _reward_setup_cuda() {
   if command -v nvcc &>/dev/null; then
     return 0
@@ -153,7 +146,7 @@ COMMON_ARGS=(
   --qa_num "$REWARD_QA_NUM"
   "${SHUFFLE_QA_ARGS[@]}"
   --format_reward_weight "$FORMAT_REWARD_WEIGHT"
-  --format_min_brackets "$FORMAT_MIN_BRACKETS"
+  --format_max_minute "$FORMAT_MAX_MINUTE"
   --task "$REWARD_TASK"
   --score_mode "$REWARD_SCORE_MODE"
   --judge_max_model_len "$JUDGE_MAX_MODEL_LEN"
@@ -165,21 +158,21 @@ python "$SERVE_RM_SCRIPT" \
   --worker_hosts 0.0.0.0 &
 
 MASTER_PID=$!
-echo "等待 master 绑定端口 $REWARD_PORT（最多约 60 秒）..."
+echo "Waiting for master to bind port $REWARD_PORT for up to 60 seconds..."
 for _ in $(seq 1 30); do
   sleep 2
   if ! kill -0 "$MASTER_PID" 2>/dev/null; then
-    echo "Reward master 进程已退出，Ctrl+C 可彻底清理并退出。"
+    echo "Reward master exited. Press Ctrl+C to run cleanup and exit."
     sleep infinity
     exit 0
   fi
   if ss -tlnp 2>/dev/null | grep -q ":$REWARD_PORT "; then
-    echo "端口 $REWARD_PORT 已监听，启动 worker。"
+    echo "Port $REWARD_PORT is listening; starting worker."
     break
   fi
 done
 if ! ss -tlnp 2>/dev/null | grep -q ":$REWARD_PORT "; then
-  echo "超时：端口 $REWARD_PORT 仍未监听，Ctrl+C 可彻底清理并退出。"
+  echo "Timed out waiting for port $REWARD_PORT. Press Ctrl+C to run cleanup and exit."
   sleep infinity
   exit 1
 fi

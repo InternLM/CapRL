@@ -45,7 +45,6 @@ export REWARD_NUM_WORKERS="${REWARD_NUM_WORKERS:-1}"
 
 # qa-mode reward settings. They are ignored by vl_judge mode.
 export FORMAT_REWARD_WEIGHT="${FORMAT_REWARD_WEIGHT:-0.2}"
-export FORMAT_MIN_BRACKETS="${FORMAT_MIN_BRACKETS:-3}"
 export REWARD_QA_NUM="${REWARD_QA_NUM:-8}"
 
 exec bash "${VERL_ROOT}/recipe/video_captionrl/scripts/start_reward_server.sh"

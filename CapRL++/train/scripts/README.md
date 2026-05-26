@@ -67,7 +67,13 @@ Important reward variables:
 - `REWARD_TASK`: defaults to `video`; set to `image` for image caption training.
 - `REWARD_QA_NUM`: sampling rounds in `qa` mode. Defaults
   to `8`.
-- `FORMAT_REWARD_WEIGHT`: format reward weight. Defaults to `0.2`.
+- `FORMAT_REWARD_WEIGHT`: video timestamp format reward weight. Defaults to
+  `0.2`. For video captions, the unweighted format reward is
+  `0.5 * N_valid / max(N_all, 1) + 0.5 * I_chrono`, where `N_all` is the
+  number of timestamp-like brackets matched by the regex, `N_valid` is the
+  number that satisfy logical constraints such as valid seconds and
+  `t_end >= t_start`, and `I_chrono` is `1` only when valid timestamp start
+  times are monotonically non-decreasing.
 
 For `REWARD_SCORE_MODE=qa`, the reward model can be a text LLM. For
 `REWARD_SCORE_MODE=vl_judge`, use a multimodal VLM.
