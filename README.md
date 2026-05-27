@@ -18,8 +18,29 @@
   <a href="https://scholar.google.com/citations?user=5bInRDEAAAAJ&hl=zh-CN"><strong>Feng Wu</strong></a> ·
   <a href="http://dahua.site/"><strong>Dahua Lin</strong></a>
 
+  <h2 align="center">CapRL++: Unified Reinforcement Learning with Verifiable Rewards for Dense Image and Video Captioning</h2>
+    <p align="center">
+    <a href="https://yph22.github.io/"><strong>Penghui Yang*</strong></a>
+    ·
+    <a href="https://github.com/Cooperx521"><strong>Long Xing*</strong></a>
+    ·
+    <a href="https://lightdxy.github.io/"><strong>Xiaoyi Dong</strong></a>
+    ·
+    <a href="https://yuhangzang.github.io/"><strong>Yuhang Zang</strong></a>
+    ·
+    <a href="https://scholar.google.com/citations?user=sJkqsqkAAAAJ"><strong>Yuhang Cao</strong></a>
+    ·
+    <a href="https://scholar.google.com/citations?user=P4yNnSkAAAAJ&hl=zh-TW"><strong>Jianze Liang</strong></a>
+    ·
+    <a href="https://github.com/shikiw"><strong>Qidong Huang</strong></a>
+    ·
+    <a href="https://myownskyw7.github.io/"><strong>Jiaqi Wang</strong></a>
+    ·
+    <a href="http://dahua.site/"><strong>Dahua Lin</strong></a>
+    </p>
 
-📖<a href="https://arxiv.org/abs/2509.22647">Paper</a> | 🏠<a href="https://github.com/InternLM/CapRL">Github</a> | 🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2509.22647">Daily Paper</a> 
+📖<a href="https://arxiv.org/abs/2509.22647">Paper</a> | 🏠<a href="https://github.com/InternLM/CapRL">Github</a> | 🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2509.22647">Daily Paper</a>
+
 
 #### CapRL Series Model & Dataset
 | Series | Models & Resources |
@@ -28,7 +49,7 @@
 | **CapRL 2.0 Series** | [🤗 CapRL-Qwen3VL-2B](https://huggingface.co/internlm/CapRL-Qwen3VL-2B) \| [🤗 CapRL-Qwen3VL-4B](https://huggingface.co/internlm/CapRL-Qwen3VL-4B) \| [📦 CapRL-Qwen3VL-2B-GGUF](https://huggingface.co/internlm/CapRL-Qwen3VL-2B-GGUF) \| [📦 CapRL-Qwen3VL-4B-GGUF](https://huggingface.co/internlm/CapRL-Qwen3VL-4B-GGUF) \| [🌈CapRL-Qwen3VL-4B Space](https://huggingface.co/spaces/yuhangzang/CapRL-Qwen3VL-4B)
 | **CapRL 1.0 Series** | [🤗 CapRL-Qwen2.5VL-3B](https://huggingface.co/internlm/CapRL-3B) \| [🤗 CapRL-InternVL3.5-8B](https://huggingface.co/yuhangzang/CapRL-InternVL3.5-8B) \| [📊 CapRL-2M Dataset](https://huggingface.co/datasets/internlm/CapRL-2M) \| [📦 CapRL-3B-GGUF](https://huggingface.co/mradermacher/CapRL-3B-GGUF) \| [📦 CapRL-3B-i1-GGUF](https://huggingface.co/mradermacher/CapRL-3B-i1-GGUF) \| [🌈CapRL-Qwen2.5VL-3B Space](https://huggingface.co/spaces/yuhangzang/caprl)
 
-**CapRL 3.0 series (CapRL++)**: **CapRL-Video-4B** has been released!
+**CapRL 3.0 series (CapRL++)**: **CapRL-Video-4B** has been released! CapRL++ extends the original image-caption RL framework to a unified image and video captioning paradigm with verifiable rewards.
 
 We are excited to release the **CapRL 2.0 series**: **CapRL-Qwen3VL-2B** and **CapRL-Qwen3VL-4B**. These models feature fewer parameters while delivering even more powerful captioning performance. 
 Notably, **CapRL-Qwen3VL-2B outperforms both CapRL-Qwen2.5VL-3B and Qwen2.5VL-72B in captioning tasks, while CapRL-Qwen3VL-4B further demonstrates a significant performance leap over the 2B version.**
@@ -41,16 +62,17 @@ This guide will help you choose the most suitable model for your specific needs:
 |-|-|-|
 |🤗[CapRL-Qwen3VL-2B](https://huggingface.co/internlm/CapRL-Qwen3VL-2B)|2B|Speed, Efficiency|
 |🤗[CapRL-Qwen3VL-4B](https://huggingface.co/internlm/CapRL-Qwen3VL-4B)|4B|High Performance, Advanced Captioning Ability|
+|🤗[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)|4B|Dense Video Captioning, Temporal Grounding|
 
 Now you can try out CapRL with your own images🎨!&nbsp;&nbsp;&nbsp;&nbsp;➡️&nbsp;&nbsp;&nbsp;&nbsp;[🌈CapRL-Qwen2.5VL-3B Space](https://huggingface.co/spaces/yuhangzang/caprl) and [🌈CapRL-Qwen3VL-4B Space](https://huggingface.co/spaces/yuhangzang/CapRL-Qwen3VL-4B).
 
 
 ## 📢 News
 We are working on even stronger base models and upgrading our training recipe — stay tuned!
-- 🔥 [05/25/2026] We have released the training and evaluation code for CapRL++. See mroe in `CapRL++` folder.
+- 🔥 [05/25/2026] We have released the training and evaluation code for CapRL++. See more in `CapRL++` folder.
 - 🔥 [05/22/2026] We have released the **[CapRL-Video-QA-20K](https://huggingface.co/datasets/internlm/CapRL-Video-QA-20K)** dataset for CapRL++ training and 
 the **[CapRL-Video-178K](https://huggingface.co/datasets/internlm/CapRL-Video-178K)** dataset (recaptioned by **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** from LLaVA-Video-178K)!
-- 🔥 [05/22/2026] **CapRL++** is coming! We have released the **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** model designed for video captioning! Demo is [here](https://internlm.github.io/CapRL/demo/)
+- 🔥 [05/22/2026] **CapRL++** is coming! We have released the **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** model (trained on Qwen3-VL-4B) designed for video captioning! Demo is [here](https://internlm.github.io/CapRL/demo/).
 - 🔥 [04/16/2026] We have released the **[CapRL-QA-75K](https://huggingface.co/datasets/internlm/CapRL-QA-75K)** training dataset!
 - 🔥 [2/9/2026] We release the CapRL training code.
 - 🔥 [1/27/2026] CapRL is accepted by ICLR2026! We are working on cleaning training code, and will release everything as soon as possible!
@@ -64,8 +86,11 @@ the **[CapRL-Video-178K](https://huggingface.co/datasets/internlm/CapRL-Video-17
 
 
 ## Introduction
-🌈We are excited to introduce <strong>CapRL-3B</strong>, a lightweight 3B image captioner that achieves perception capabilities comparable to Qwen2.5-VL-72B.
-By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model, and using a carefully filtered 75K QA dataset as the training set, we obtained a highly capable captioner, CapRL-3B.
+🌈 We are excited to introduce the **CapRL series**, a family of dense captioning models trained with reinforcement learning rather than conventional supervised caption imitation.
+
+The original **CapRL** framework focuses on dense image captioning. It optimizes an LVLM captioner with QA-derived rewards: a caption is considered high quality when a text-only model can answer visual questions using only that caption. With this recipe, the lightweight **CapRL-3B** achieves perception capabilities comparable to Qwen2.5-VL-72B.
+
+**CapRL++** further generalizes this idea from static images to dynamic videos. It trains a Qwen3-VL-based captioner with a unified RLVR pipeline, where generated captions are evaluated by their downstream utility for multiple-choice visual question answering. For videos, CapRL++ adds timestamp-format rewards and length-aware regularization so the model learns dense, temporally grounded, and non-redundant descriptions.
 
 
 
@@ -82,22 +107,87 @@ By employing CapRL training framework, initializing with the Qwen2.5-VL-3B model
 
 
 ## 💡 Highlights
-- 🔥 **Remarkable visual understanding for Chart, Infographics and Document**: CapRL-3B achieves perception accuracy and visual information coverage comparable to Qwen2.5-VL-72B.
-- 🔥 **Well-organized output**: The outputs of CapRL-3B are relatively well-structured, making them clear and easy to understand.
-- 🔥 **Detailed description for natural images**: The outputs of CapRL-3B can perfectly cover all valid visual information while containing fewer hallucinations.
+- 🔥 **Unified dense caption RL for images and videos**: CapRL++ applies the same QA-utility reward philosophy to both image and video captioning, avoiding dependence on a single reference caption.
+- 🔥 **Verifiable reward design**: CapRL++ combines visual utility reward, timestamp-format reward, and length-aware penalty to optimize accuracy, temporal structure, and information efficiency.
+- 🔥 **Strong temporal grounding**: CapRL-Video-4B generates explicit timestamped video descriptions and improves downstream video understanding when used as caption data.
+- 🔥 **Remarkable visual understanding for charts, infographics, and documents**: CapRL-3B achieves perception accuracy and visual information coverage comparable to Qwen2.5-VL-72B.
+- 🔥 **Well-organized dense output**: CapRL models generate structured captions that cover fine-grained objects, attributes, OCR content, relations, and events.
 
 ## Model Card
 - Based on the same recipe as CapRL-3B, we used InternVL3.5-8B as the policy model and obtained CapRL-InternVL3.5-8B through CapRL.
 - CapRL-3B-GGUF is static quants version, and CapRL-3B-i1-GGUF is weighted/imatrix quants version. Thanks for their contribution!
+- CapRL-Video-4B is trained from Qwen3-VL-4B with CapRL++ for dense video captioning. It is designed to describe both spatial details and temporal event changes with timestamped structure.
 
 
 ## 👨‍💻 Todo
 
 - ✅ Release 75k QA dataset.
 
+## CapRL++: Unified Image and Video Caption RL
+
+CapRL++ is the video-oriented extension of CapRL. It keeps the central principle of CapRL: **a caption should be rewarded by how useful it is for downstream visual question answering**. Instead of comparing a generated caption with a fixed reference, CapRL++ lets the policy model generate captions, then asks a separate vision-free LLM to answer curated multiple-choice questions using only those captions. The answer accuracy becomes a verifiable reward for RL training.
+
+### Reward Design
+
+For a sampled caption `c`, CapRL++ uses a multidimensional reward:
+
+```text
+R_total(c) = R_acc(c) + alpha * R_format(c) + beta * R_len(c)
+```
+
+- **Visual utility reward (`R_acc`)**: measures whether a text-only LLM can answer image/video MCQs from the generated caption alone. Options are shuffled and sampled multiple times to reduce answer-position bias.
+- **Temporal format reward (`R_format`)**: used for video captions. It encourages valid timestamp brackets and chronological ordering, helping the model produce temporally grounded narratives.
+- **Length-aware reward (`R_len`)**: discourages reward hacking through overly long or repetitive captions, pushing the model toward high information density.
+
+### Static-to-Dynamic Bootstrapping
+
+CapRL++ uses **S2D-Boot**, a two-stage image-to-video training recipe:
+
+1. **Image stage**: train on static images with visual utility and length rewards to strengthen fine-grained spatial perception, OCR, attributes, and relation extraction.
+2. **Video stage**: initialize from the image-stage checkpoint and train on video data with the full reward space, including timestamp-format reward, so optimization can focus on event ordering and temporal localization.
+
+This progressive strategy preserves strong image captioning ability while improving video understanding.
+
+### CapRL++ Datasets
+
+- **[CapRL-Video-QA-20K](https://huggingface.co/datasets/internlm/CapRL-Video-QA-20K)**: multiple-choice video QA data for CapRL++ reward training.
+- **[CapRL-Video-178K](https://huggingface.co/datasets/internlm/CapRL-Video-178K)**: LLaVA-Video-178K videos recaptioned by **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** with dense, timestamped descriptions.
+- **CapRL-Image-5M**: the CapRL++ paper also studies large-scale image recaptioning by combining ShareGPT4V-1M, DenseFusion-1M, and filtered web images, then annotating them with a CapRL++ image captioner.
+
+### Key Results from CapRL++
+
+- In image Prism evaluation, CapRL++ trained from Qwen2.5-VL-3B reaches an average score of **48.3**, matching Qwen2.5-VL-72B while substantially outperforming LVLM-as-a-judge reward variants.
+- On HAT image captioning evaluation, CapRL++ improves coverage and reaches an average score comparable to Qwen2.5-VL-72B.
+- In video Prism evaluation, CapRL++ trained from Qwen3-VL-4B achieves the best average score among compared general and specialized video models, surpassing Qwen3-VL-32B and Qwen3-VL-235B-A22B in the reported setting.
+- As video pretraining data, CapRL-Video-178K improves Molmo2 downstream video understanding more than GPT-4o, ShareGPT4Video-8B, and Tarsier2-7B caption sources in the paper's continual-pretraining experiments.
+- S2D-Boot gives the best balance between image and video performance, retaining strong spatial captioning while improving temporal reasoning.
+
+### Code Entry Points
+
+The CapRL++ implementation is in [`CapRL++`](CapRL++):
+
+```text
+CapRL++/
+├── train/
+│   ├── scripts/        # reward service and verl training launch scripts
+│   └── verl/           # bundled verl backend with video caption RL recipe
+└── eval/
+    ├── scripts/        # Prism video evaluation scripts
+    ├── tools/          # benchmark judge helpers
+    └── README.md
+```
+
+For details, see:
+
+- [`CapRL++/README.md`](CapRL++/README.md)
+- [`CapRL++/train/scripts/README.md`](CapRL++/train/scripts/README.md)
+- [`CapRL++/eval/README.md`](CapRL++/eval/README.md)
+
 ## 🛠️ Setup
 
 ### Installation
+
+For CapRL image training and evaluation:
 
 ```bash
 git clone https://github.com/InternLM/CapRL.git
@@ -111,12 +201,35 @@ The `setup.sh` will sequentially:
 1. Install key dependencies with pinned versions (torch, transformers, vllm, deepspeed, flash-attn, ray, etc.)
 2. Install the OpenRLHF-based training framework and remaining dependencies via `pip install -e .`
 
+For CapRL++ video training and evaluation:
+
+```bash
+cd CapRL/CapRL++/train
+conda create -n caprl python=3.10 -y
+conda activate caprl
+pip install -r scripts/requirements.txt
+pip install -e ./verl
+```
+
+Video Prism evaluation dependencies are installed separately:
+
+```bash
+cd CapRL/CapRL++/eval
+pip install -r requirements.txt
+```
+
 ## ⭐️ Quick Start
 If you want to use **CapRL-3B** for captioning, you can directly follow the exact same inference approach as in [Qwen2.5-VL-series](https://github.com/QwenLM/Qwen3-VL/tree/d2240f11656bfe404b9ba56db4e51cd09f522ff1).
 
 The prompt we use for training and evaluation is `Please describe this image in detail.`
 
 We recommend using **vLLM** to speed up inference.
+
+For **CapRL-Video-4B**, use the Qwen3-VL video inference interface or the Prism evaluation scripts under `CapRL++/eval`. A typical video caption prompt is:
+
+```text
+Please describe this video in detail with timestamps.
+```
 
 
 
