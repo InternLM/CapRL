@@ -62,7 +62,7 @@ This guide will help you choose the most suitable model for your specific needs:
 |-|-|-|
 |🤗[CapRL-Qwen3VL-2B](https://huggingface.co/internlm/CapRL-Qwen3VL-2B)|2B|Speed, Efficiency|
 |🤗[CapRL-Qwen3VL-4B](https://huggingface.co/internlm/CapRL-Qwen3VL-4B)|4B|High Performance, Advanced Captioning Ability|
-|🤗[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)|4B|Dense Video Captioning, Temporal Grounding|
+|🤗[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)|4B|Extremely dense Video Captioning|
 
 Now you can try out CapRL with your own images🎨!&nbsp;&nbsp;&nbsp;&nbsp;➡️&nbsp;&nbsp;&nbsp;&nbsp;[🌈CapRL-Qwen2.5VL-3B Space](https://huggingface.co/spaces/yuhangzang/caprl) and [🌈CapRL-Qwen3VL-4B Space](https://huggingface.co/spaces/yuhangzang/CapRL-Qwen3VL-4B).
 
@@ -152,15 +152,6 @@ This progressive strategy preserves strong image captioning ability while improv
 
 - **[CapRL-Video-QA-20K](https://huggingface.co/datasets/internlm/CapRL-Video-QA-20K)**: multiple-choice video QA data for CapRL++ reward training.
 - **[CapRL-Video-178K](https://huggingface.co/datasets/internlm/CapRL-Video-178K)**: LLaVA-Video-178K videos recaptioned by **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** with dense, timestamped descriptions.
-- **CapRL-Image-5M**: the CapRL++ paper also studies large-scale image recaptioning by combining ShareGPT4V-1M, DenseFusion-1M, and filtered web images, then annotating them with a CapRL++ image captioner.
-
-### Key Results from CapRL++
-
-- In image Prism evaluation, CapRL++ trained from Qwen2.5-VL-3B reaches an average score of **48.3**, matching Qwen2.5-VL-72B while substantially outperforming LVLM-as-a-judge reward variants.
-- On HAT image captioning evaluation, CapRL++ improves coverage and reaches an average score comparable to Qwen2.5-VL-72B.
-- In video Prism evaluation, CapRL++ trained from Qwen3-VL-4B achieves the best average score among compared general and specialized video models, surpassing Qwen3-VL-32B and Qwen3-VL-235B-A22B in the reported setting.
-- As video pretraining data, CapRL-Video-178K improves Molmo2 downstream video understanding more than GPT-4o, ShareGPT4Video-8B, and Tarsier2-7B caption sources in the paper's continual-pretraining experiments.
-- S2D-Boot gives the best balance between image and video performance, retaining strong spatial captioning while improving temporal reasoning.
 
 ### Code Entry Points
 
@@ -228,7 +219,7 @@ We recommend using **vLLM** to speed up inference.
 For **CapRL-Video-4B**, use the Qwen3-VL video inference interface or the Prism evaluation scripts under `CapRL++/eval`. A typical video caption prompt is:
 
 ```text
-Please describe this video in detail with timestamps.
+Please describe this video in detail.
 ```
 
 
