@@ -45,7 +45,7 @@
 #### CapRL Series Model & Dataset
 | Series | Models & Resources |
 | :--- | :--- |
-| **CapRL 3.0 Series (CapRL++)** | [🤗 CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B) |
+| **CapRL 3.0 Series (CapRL++)** | [🤗 CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B) \|[📊 CapRL-Video-178K Dataset](https://huggingface.co/datasets/internlm/CapRL-Video-178K) \|
 | **CapRL 2.0 Series** | [🤗 CapRL-Qwen3VL-2B](https://huggingface.co/internlm/CapRL-Qwen3VL-2B) \| [🤗 CapRL-Qwen3VL-4B](https://huggingface.co/internlm/CapRL-Qwen3VL-4B) \| [📦 CapRL-Qwen3VL-2B-GGUF](https://huggingface.co/internlm/CapRL-Qwen3VL-2B-GGUF) \| [📦 CapRL-Qwen3VL-4B-GGUF](https://huggingface.co/internlm/CapRL-Qwen3VL-4B-GGUF) \| [🌈CapRL-Qwen3VL-4B Space](https://huggingface.co/spaces/yuhangzang/CapRL-Qwen3VL-4B)
 | **CapRL 1.0 Series** | [🤗 CapRL-Qwen2.5VL-3B](https://huggingface.co/internlm/CapRL-3B) \| [🤗 CapRL-InternVL3.5-8B](https://huggingface.co/yuhangzang/CapRL-InternVL3.5-8B) \| [📊 CapRL-2M Dataset](https://huggingface.co/datasets/internlm/CapRL-2M) \| [📦 CapRL-3B-GGUF](https://huggingface.co/mradermacher/CapRL-3B-GGUF) \| [📦 CapRL-3B-i1-GGUF](https://huggingface.co/mradermacher/CapRL-3B-i1-GGUF) \| [🌈CapRL-Qwen2.5VL-3B Space](https://huggingface.co/spaces/yuhangzang/caprl)
 
@@ -62,7 +62,7 @@ This guide will help you choose the most suitable model for your specific needs:
 |-|-|-|
 |🤗[CapRL-Qwen3VL-2B](https://huggingface.co/internlm/CapRL-Qwen3VL-2B)|2B|Speed, Efficiency|
 |🤗[CapRL-Qwen3VL-4B](https://huggingface.co/internlm/CapRL-Qwen3VL-4B)|4B|High Performance, Advanced Captioning Ability|
-|🤗[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)|4B|Extremely dense Video Captioning|
+|🤗[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)|4B|Extremely Dense Video Captioning|
 
 Now you can try out CapRL with your own images🎨!&nbsp;&nbsp;&nbsp;&nbsp;➡️&nbsp;&nbsp;&nbsp;&nbsp;[🌈CapRL-Qwen2.5VL-3B Space](https://huggingface.co/spaces/yuhangzang/caprl) and [🌈CapRL-Qwen3VL-4B Space](https://huggingface.co/spaces/yuhangzang/CapRL-Qwen3VL-4B).
 
