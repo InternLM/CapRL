@@ -30,11 +30,11 @@
     ·
     <a href="https://scholar.google.com/citations?user=sJkqsqkAAAAJ"><strong>Yuhang Cao</strong></a>
     ·
-    <strong>Yibin Wang</strong>
+    <a href="https://codegoat24.github.io/"><strong>Yibin Wang</strong></a>
     ·
-    <strong>Yujie Zhou</strong>
+    <a href="https://github.com/YujieOuO/"><strong>Yujie Zhou</strong></a>
     ·
-    <strong>Jiazi Bu</strong>
+    <a href="https://bujiazi.github.io/"><strong>Jiazi Bu</strong></a>
     ·
     <a href="https://scholar.google.com/citations?user=P4yNnSkAAAAJ&hl=zh-TW"><strong>Jianze Liang</strong></a>
     ·
@@ -47,7 +47,7 @@
     <a href="http://dahua.site/"><strong>Dahua Lin</strong></a>
     </p>
 
-📖<a href="https://arxiv.org/abs/2606.09393">CapRL++ Paper</a> | 📖<a href="https://arxiv.org/abs/2509.22647">CapRL Paper</a> | 🏠<a href="https://github.com/InternLM/CapRL">Github</a> | 🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2606.09393">CapRL++ Daily Paper</a>
+📖<a href="https://arxiv.org/abs/2606.09393">CapRL++ Paper</a> | 📖<a href="https://arxiv.org/abs/2509.22647">CapRL Paper</a> | 🏠<a href="https://github.com/InternLM/CapRL">Github</a> | 🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a>
 
 
 #### CapRL Series Model & Dataset
