@@ -45,6 +45,13 @@ input {
   margin-bottom: 22px;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--accent-strong);
@@ -105,6 +112,11 @@ h2 {
 .copy-button.is-copied {
   border-color: var(--accent-strong);
   background: var(--accent-strong);
+}
+
+.repo-link-secondary {
+  background: #fff;
+  color: var(--accent-strong);
 }
 
 .demo-layout {

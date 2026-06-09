@@ -30,22 +30,30 @@
     ·
     <a href="https://scholar.google.com/citations?user=sJkqsqkAAAAJ"><strong>Yuhang Cao</strong></a>
     ·
+    <strong>Yibin Wang</strong>
+    ·
+    <strong>Yujie Zhou</strong>
+    ·
+    <strong>Jiazi Bu</strong>
+    ·
     <a href="https://scholar.google.com/citations?user=P4yNnSkAAAAJ&hl=zh-TW"><strong>Jianze Liang</strong></a>
     ·
     <a href="https://github.com/shikiw"><strong>Qidong Huang</strong></a>
     ·
     <a href="https://myownskyw7.github.io/"><strong>Jiaqi Wang</strong></a>
     ·
+    <a href="https://scholar.google.com/citations?user=5bInRDEAAAAJ&hl=zh-CN"><strong>Feng Wu</strong></a>
+    ·
     <a href="http://dahua.site/"><strong>Dahua Lin</strong></a>
     </p>
 
-📖<a href="https://arxiv.org/abs/2509.22647">Paper</a> | 🏠<a href="https://github.com/InternLM/CapRL">Github</a> | 🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2509.22647">Daily Paper</a>
+📖<a href="https://arxiv.org/abs/2606.09393">CapRL++ Paper</a> | 📖<a href="https://arxiv.org/abs/2509.22647">CapRL Paper</a> | 🏠<a href="https://github.com/InternLM/CapRL">Github</a> | 🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a> | 🤗<a href="https://huggingface.co/papers/2606.09393">CapRL++ Daily Paper</a>
 
 
 #### CapRL Series Model & Dataset
 | Series | Models & Resources |
 | :--- | :--- |
-| **CapRL 3.0 Series (CapRL++)** | [🤗 CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B) \|[📊 CapRL-Video-178K Dataset](https://huggingface.co/datasets/internlm/CapRL-Video-178K) \|
+| **CapRL 3.0 Series (CapRL++)** | [🤗 CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B) \| [📊 CapRL-Video-178K Dataset](https://huggingface.co/datasets/internlm/CapRL-Video-178K) |
 | **CapRL 2.0 Series** | [🤗 CapRL-Qwen3VL-2B](https://huggingface.co/internlm/CapRL-Qwen3VL-2B) \| [🤗 CapRL-Qwen3VL-4B](https://huggingface.co/internlm/CapRL-Qwen3VL-4B) \| [📦 CapRL-Qwen3VL-2B-GGUF](https://huggingface.co/internlm/CapRL-Qwen3VL-2B-GGUF) \| [📦 CapRL-Qwen3VL-4B-GGUF](https://huggingface.co/internlm/CapRL-Qwen3VL-4B-GGUF) \| [🌈CapRL-Qwen3VL-4B Space](https://huggingface.co/spaces/yuhangzang/CapRL-Qwen3VL-4B)
 | **CapRL 1.0 Series** | [🤗 CapRL-Qwen2.5VL-3B](https://huggingface.co/internlm/CapRL-3B) \| [🤗 CapRL-InternVL3.5-8B](https://huggingface.co/yuhangzang/CapRL-InternVL3.5-8B) \| [📊 CapRL-2M Dataset](https://huggingface.co/datasets/internlm/CapRL-2M) \| [📦 CapRL-3B-GGUF](https://huggingface.co/mradermacher/CapRL-3B-GGUF) \| [📦 CapRL-3B-i1-GGUF](https://huggingface.co/mradermacher/CapRL-3B-i1-GGUF) \| [🌈CapRL-Qwen2.5VL-3B Space](https://huggingface.co/spaces/yuhangzang/caprl)
 
@@ -69,10 +77,11 @@ Now you can try out CapRL with your own images🎨!&nbsp;&nbsp;&nbsp;&nbsp;➡�
 
 ## 📢 News
 We are working on even stronger base models and upgrading our training recipe — stay tuned!
+- 🔥 [06/08/2026] **CapRL++** paper is available on arXiv: [CapRL++: Unified Reinforcement Learning with Verifiable Rewards for Dense Image and Video Captioning](https://arxiv.org/abs/2606.09393).
 - 🔥 [05/25/2026] We have released the training and evaluation code for CapRL++. See more in `CapRL++` folder.
 - 🔥 [05/22/2026] We have released the **[CapRL-Video-QA-20K](https://huggingface.co/datasets/internlm/CapRL-Video-QA-20K)** dataset for CapRL++ training and 
 the **[CapRL-Video-178K](https://huggingface.co/datasets/internlm/CapRL-Video-178K)** dataset (recaptioned by **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** from LLaVA-Video-178K)!
-- 🔥 [05/22/2026] **CapRL++** is coming! We have released the **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** model (trained on Qwen3-VL-4B) designed for video captioning! Demo is [here](https://internlm.github.io/CapRL/demo/).
+- 🔥 [05/22/2026] We have released the **[CapRL-Video-4B](https://huggingface.co/internlm/CapRL-Video-4B)** model (trained on Qwen3-VL-4B) designed for video captioning! Demo is [here](https://internlm.github.io/CapRL/demo/).
 - 🔥 [04/16/2026] We have released the **[CapRL-QA-75K](https://huggingface.co/datasets/internlm/CapRL-QA-75K)** training dataset!
 - 🔥 [2/9/2026] We release the CapRL training code.
 - 🔥 [1/27/2026] CapRL is accepted by ICLR2026! We are working on cleaning training code, and will release everything as soon as possible!
@@ -399,6 +408,30 @@ You can specify `--reward-model-path` as the path to **CapRL-Eval-3B** in `Eval_
 
 **Usage and License Notices**: The data and code are intended and licensed for research use only.
 License: Attribution-NonCommercial 4.0 International It should abide by the policy of OpenAI: https://openai.com/policies/terms-of-use
+
+## Citation
+
+If you find CapRL++ useful for your research, please consider citing:
+
+```bibtex
+@article{yang2026caprlplusplus,
+  title={CapRL++: Unified Reinforcement Learning with Verifiable Rewards for Dense Image and Video Captioning},
+  author={Yang, Penghui and Xing, Long and Dong, Xiaoyi and Zang, Yuhang and Cao, Yuhang and Wang, Yibin and Zhou, Yujie and Bu, Jiazi and Liang, Jianze and Huang, Qidong and Wang, Jiaqi and Wu, Feng and Lin, Dahua},
+  journal={arXiv preprint arXiv:2606.09393},
+  year={2026}
+}
+```
+
+For the original CapRL paper:
+
+```bibtex
+@article{xing2025caprl,
+  title={CapRL: Stimulating Dense Image Caption Capabilities via Reinforcement Learning},
+  author={Xing, Long and Dong, Xiaoyi and Zang, Yuhang and Cao, Yuhang and Liang, Jianze and Huang, Qidong and Wang, Jiaqi and Wu, Feng and Lin, Dahua},
+  journal={arXiv preprint arXiv:2509.22647},
+  year={2025}
+}
+```
 
 ## ❤️ Acknowledgments
 - [Open-LLaVA-NeXT](https://github.com/xiaoachen98/Open-LLaVA-NeXT): Thanks for the impressive open-source dataset.

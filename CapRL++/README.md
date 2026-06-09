@@ -1,8 +1,14 @@
-# CapRL++
+# CapRL++: Unified Reinforcement Learning with Verifiable Rewards for Dense Image and Video Captioning
 
-CapRL++ is an extension of CapRL for video caption reinforcement learning.
-While the original CapRL release focuses
-on dense image captioning, CapRL++ keeps the same central idea: train a caption
+[[Paper](https://arxiv.org/abs/2606.09393)] [[Project](https://github.com/InternLM/CapRL)] [[Model](https://huggingface.co/internlm/CapRL-Video-4B)] [[Dataset](https://huggingface.co/datasets/internlm/CapRL-Video-178K)]
+
+**Authors:** Penghui Yang*, Long Xing*, Xiaoyi Dong, Yuhang Zang, Yuhang Cao,
+Yibin Wang, Yujie Zhou, Jiazi Bu, Jianze Liang, Qidong Huang, Jiaqi Wang,
+Feng Wu, Dahua Lin.
+
+CapRL++ is a unified reinforcement learning framework for dense image and video
+captioning with verifiable rewards. While the original CapRL release focuses on
+dense image captioning, CapRL++ keeps the same central idea: train a caption
 model with reward signals that measure whether the generated caption preserves
 enough visual information for downstream question answering.
 
@@ -13,8 +19,10 @@ extension.
 
 CapRL++ adds three practical components on top of CapRL:
 
-- video caption RL training based on the bundled verl framework;
-- a remote reward service for QA-based or VLM-judge-based reward scoring;
+- unified image and video caption RL training based on the bundled verl
+  framework;
+- a remote reward service for QA-based or VLM-judge-based verifiable reward
+  scoring;
 - a video Prism evaluation pipeline that measures caption usefulness through
   downstream benchmark QA.
 
@@ -106,3 +114,14 @@ question-answering feedback, but extends the workflow to video captioning and
 uses verl as the RL training backend. For image caption models, datasets, and
 the original CapRL training and evaluation pipeline, refer to the main
 repository README.
+
+## Citation
+
+```bibtex
+@article{yang2026caprlplusplus,
+  title={CapRL++: Unified Reinforcement Learning with Verifiable Rewards for Dense Image and Video Captioning},
+  author={Yang, Penghui and Xing, Long and Dong, Xiaoyi and Zang, Yuhang and Cao, Yuhang and Wang, Yibin and Zhou, Yujie and Bu, Jiazi and Liang, Jianze and Huang, Qidong and Wang, Jiaqi and Wu, Feng and Lin, Dahua},
+  journal={arXiv preprint arXiv:2606.09393},
+  year={2026}
+}
+```
