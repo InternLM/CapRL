@@ -47,8 +47,11 @@
     <a href="http://dahua.site/"><strong>Dahua Lin</strong></a>
     </p>
 
-📖<a href="https://arxiv.org/abs/2606.09393">CapRL++ Paper</a> | 📖<a href="https://arxiv.org/abs/2509.22647">CapRL Paper</a> | 🏠<a href="https://github.com/InternLM/CapRL">Github</a> | 🤗<a href="https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189">CapRL Collection</a>
 
+[![arXiv](https://img.shields.io/badge/arXiv-2606.09393-b31b1b.svg)](https://arxiv.org/abs/2606.09393)
+[![arXiv](https://img.shields.io/badge/arXiv-2509.22647-b31b1b.svg)](https://arxiv.org/abs/2509.22647)
+[![GitHub](https://img.shields.io/badge/GitHub-InternLM%2FCapRL-2ea44f?logo=github&logoColor=white)](https://github.com/InternLM/CapRL)
+[![HuggingFace](https://img.shields.io/badge/🤗%20CapRL-Collection-ffcc4d)](https://huggingface.co/collections/long-xing1/caprl-68d64ac32ded31596c36e189)
 
 #### CapRL Series Model & Dataset
 | Series | Models & Resources |
