@@ -234,6 +234,11 @@ For **CapRL-Video-4B**, use the Qwen3-VL video inference interface or the Prism 
 Please describe this video in detail.
 ```
 
+For explicit timestamps, you may try:
+
+```text
+You are a video captioner. Describe this video in strictly chronological order and in great detail. \n\nYour description should cover:\n1. **Key Visuals:** Detailed appearance of main characters (clothing, colors, gender) and prominent objects.\n2. **Actions & Timestamps:** Specific movements and interactions (e.g., instead of \"he moved,\" say \"he walked quickly towards the door\"). **Crucially, you must anchor distinct actions, events, and state changes with exact timestamps using the format `[mm:ss]` or `[mm:ss - mm:ss]`.**\n3. **Sequence:** Clearly state the order of events from start to finish, explicitly noting when actions happen simultaneously or sequentially.\n4. **Setting:** Describe the background environment and lighting.\n\nGoal: Provide a comprehensive and temporally precise description so that someone who cannot see this video can visualize it perfectly and map out an exact mental timeline of all events.\n\nExample Format:\n\"[00:00 - 00:05] A man wearing a red jacket stands by a window in a dimly lit room. [00:06] He suddenly turns around and [00:08 - 00:12] walks quickly towards a wooden desk.
+```
 
 
 ### Start an OpenAI API Service
